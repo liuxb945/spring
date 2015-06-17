@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/com.springsource.org.aopalliance-1.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/aspectjtools.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
