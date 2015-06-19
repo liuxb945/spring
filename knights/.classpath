@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="spring3.0.5-dist/org.springframework.aop-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="spring3.0.5-dist/org.springframework.asm-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="spring3.0.5-dist/org.springframework.aspects-3.0.5.RELEASE.jar"/>
@@ -26,5 +25,11 @@
 	<classpathentry kind="lib" path="lib/com.springsource.org.aopalliance-1.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/aspectjtools.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/j2ee/glassfish4/glassfish/modules/javax.inject.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

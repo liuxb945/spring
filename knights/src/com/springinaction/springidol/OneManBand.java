@@ -8,15 +8,16 @@ public class OneManBand implements Performer {
   }
 
   public void perform() throws PerformanceException {
-    for (Instrument instrument : instruments) {
-      instrument.play();
+    for (Song song : songs) {
+      String str=song.getTitle();
+      System.out.println(str);
     }
   }
 
-  private Collection<Instrument> instruments;
+  private Collection<Song> songs;
 
-  public void setInstruments(Collection<Instrument> instruments) {
-    this.instruments = instruments; //<co id="co_injectInstrumentCollection"/>
+  public void setSongs(Collection<Song> songs) {
+    this.songs = songs; //<co id="co_injectInstrumentCollection"/>
   }
 }
 //<end id="onemanband_java" />

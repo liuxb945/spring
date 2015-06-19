@@ -24,5 +24,33 @@ public class test {
 		Instrumentalist ins=(Instrumentalist)ctx.getBean("kenny2");
 		ins.perform();
 	}
+	
+	@Test
+	public void carl() throws PerformanceException{
+		Performer j=(Performer)ctx.getBean("carl");
+		j.perform();
+	}
+	
+	@Test
+	public void song() throws PerformanceException{
+		Performer j=(Performer)ctx.getBean("onehand");
+		j.perform();
+	}
+	
+	@Test
+	public void eddie() throws PerformanceException{
+		Instrumentalist ins=(Instrumentalist)ctx.getBean("eddie");
+		ins.perform();
+	}
+	@Test
+	public void knife(){
+		//KnifeJuggler k=new KnifeJuggler(new knifeProvider());
+	}
+	
+	@Test
+	public void audience(){
+		Audience a=(Audience)ctx.getBean("audience");
+		a.takeSeats();
+	}
 
 }
