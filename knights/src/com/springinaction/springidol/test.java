@@ -4,6 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+
+import com.habuma.spitter.domain.Spitter;
+import com.habuma.spitter.persistence.HibernateSpitterDao;
+import com.habuma.spitter.persistence.SimpleJdbcTemplateSpitterDao;
 
 public class test {
 	ApplicationContext ctx=null;
@@ -39,8 +44,12 @@ public class test {
 	
 	@Test
 	public void eddie() throws PerformanceException{
-		Instrumentalist ins=(Instrumentalist)ctx.getBean("eddie");
+		Object obj=ctx.getBean("eddie");
+		System.out.println(obj.getClass().getDeclaredMethods());
+		Performer ins=(Performer)ctx.getBean("eddie");
 		ins.perform();
+		Contestant contestant = (Contestant)ctx.getBean("eddie");
+		contestant.receiveAward();
 	}
 	@Test
 	public void knife(){
@@ -51,6 +60,21 @@ public class test {
 	public void audience(){
 		Audience a=(Audience)ctx.getBean("audience");
 		a.takeSeats();
+	}
+	
+	@Test
+	public void think(){
+		Thinker t=(Thinker)ctx.getBean("volunteer");
+		String str="abc";
+		t.thinkOfSomething(str);
+	}
+	
+	@Test
+	public void testGetSpitterById(){
+		HibernateSpitterDao dao=(HibernateSpitterDao)ctx.getBean("HibernateSpitterDao");
+		Spitter s=dao.getSpitterById(1l);
+		System.out.println(s.getFullName());
+		
 	}
 
 }

@@ -11,43 +11,74 @@
      http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-  
-  <!--<start id="audience_bean" />--> 
-  <bean id="audience" 
-      class="com.springinaction.springidol.Audience" />
-  <!--<end id="audience_bean" />--> 
-  
-  <bean id="eddie"
-      class="com.springinaction.springidol.Instrumentalist">
-    <property name="instrument">
-      <bean class="com.springinaction.springidol.Guitar" />
-    </property>
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+
+        <property name="url" value="jdbc:mysql://localhost:3306/spitter"/>
+
+        <property name="username" value="root" />
+
+        <property name="password" value="123456" />
+
+    </bean>
+  <!--<start id="bean.jdbcTemplate" />--> 
+  <bean id="jdbcTemplate"
+     class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+     <constructor-arg ref="dataSource" />
   </bean>
+  <!--<end id="bean.jdbcTemplate" />-->
+    
+  <!--<start id="bean.spitterDao" />--> 
+  <bean id="spitterDao" 
+      class="com.habuma.spitter.persistence.SimpleJdbcTemplateSpitterDao">
+    <property name="jdbcTemplate" ref="jdbcTemplate" />
+  </bean>
+  <!--<end id="bean.spitterDao" />-->
   
+  <!--<start id="bean_sessionFactory" />--> 
+ <bean id="sessionFactory"
+  class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+  <property name="dataSource" ref="dataSource" />
+  <property name="packagesToScan" 
+      value="com.habuma.spitter.domain" />  
+  <property name="hibernateProperties">
+   <props>
+    <prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+   </props>
+  </property>
+ </bean>
+ <!--<end id="bean_sessionFactory" />-->
+  <!-- 
+<start id="property_packagesToScan_asList" />    
+<property name="packagesToScan">
+    <list>
+        <value>com.habuma.spitter.domain</value>
+    </list>
+</property>
+    <end id="property_packagesToScan_asList" />
+-->
 
-  <!--<start id="audience_aspect" />--> 
-<aop:config>
-  <aop:aspect ref="audience"><!--<co id="co_refAudienceBean"/>-->
+<!-- 
+<start id="bean_sessionFactory_withAnnotatedClasses" />    
+<property name="annotatedClasses">
+    <list>
+        <value>com.habuma.spitter.domain.Spitter</value>
+        <value>com.habuma.spitter.domain.Spittle</value>
+   </list>
+</property>  
+    <end id="bean_sessionFactory_withAnnotatedClasses" />
+-->
 
-    <aop:before pointcut=
-         "execution(* com.springinaction.springidol.Performer.perform(..))"
-      method="takeSeats" /> <!--<co id="co_beforePointcut"/>-->
-       
-    <aop:before pointcut=
-         "execution(* com.springinaction.springidol.Performer.perform(..))"
-      method="turnOffCellPhones" /> <!--<co id="co_beforePointcut2"/>-->
-       
-    <aop:after-returning pointcut=
-         "execution(* com.springinaction.springidol.Performer.perform(..))" 
-      method="applaud" /> <!--<co id="co_afterPointcut"/>-->
-       
-    <aop:after-throwing pointcut=
-         "execution(* com.springinaction.springidol.Performer.perform(..))" 
-      method="demandRefund" /> <!--<co id="co_afterThrowingPointcut"/>-->
-       
- </aop:aspect>
-</aop:config>
-  <!--<end id="audience_aspect" />-->
+ <!--<start id="bean_exception_translation_post_processor" />--> 
+<bean class=
+  "org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+ <!--<end id="bean_exception_translation_post_processor" />-->
+
+ <!--<start id="bean_component_scan" />--> 
+ <context:component-scan 
+     base-package="com.habuma.spitter.persistence" />
+ <!--<end id="bean_component_scan" /> -->
   
   
 </beans>

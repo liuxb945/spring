@@ -1,3 +1,4 @@
+// <start id="volunteer_java" />
 package com.springinaction.springidol;
 
 public class Volunteer implements Thinker {
@@ -11,3 +12,4 @@ public class Volunteer implements Thinker {
     return thoughts;
   }
 }
+// <end id="volunteer_java" />
