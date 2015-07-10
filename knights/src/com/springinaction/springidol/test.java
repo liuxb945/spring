@@ -9,6 +9,7 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import com.habuma.spitter.domain.Spitter;
 import com.habuma.spitter.persistence.HibernateSpitterDao;
 import com.habuma.spitter.persistence.SimpleJdbcTemplateSpitterDao;
+import com.habuma.spitter.persistence.SpitterDao;
 
 public class test {
 	ApplicationContext ctx=null;
@@ -71,7 +72,7 @@ public class test {
 	
 	@Test
 	public void testGetSpitterById(){
-		HibernateSpitterDao dao=(HibernateSpitterDao)ctx.getBean("HibernateSpitterDao");
+		SpitterDao dao=(SpitterDao)ctx.getBean("hibernateSpitterDao");
 		Spitter s=dao.getSpitterById(1l);
 		System.out.println(s.getFullName());
 		
